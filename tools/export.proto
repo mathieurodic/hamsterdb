@@ -1,0 +1,37 @@
+
+package HamsterTool;
+
+option optimize_for = LITE_RUNTIME;
+
+message Datum {
+  enum Type {
+    ENVIRONMENT = 1;
+    DATABASE = 2;
+    ITEM = 3;
+  };
+
+  required Type type = 1;
+  optional Environment env = 2;
+  optional Database db = 3;
+  optional Item item = 4;
+};
+
+message Environment {
+  required uint32 flags = 1;
+  required uint32 page_size = 2;
+  required uint32 max_databases = 3;
+};
+
+message Database {
+  required uint32 name = 1;
+  required uint32 flags = 2;
+  required uint32 key_size = 3;
+  optional uint32 key_type = 4;
+  optional uint32 record_size = 5;
+};
+
+message Item {
+  required bytes key = 1;
+  optional bytes record = 2;
+};
+
